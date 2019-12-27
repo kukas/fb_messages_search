@@ -30,9 +30,7 @@ export default {
       myUsername: '',
       allMessages: [],
       filteredMessages: [],
-      filterInput: 'spotify.com|soundcloud|vimeo'
-      // filter: /spotify.com|soundcloud|vimeo/i
-      // filter: /youtube\.com|youtu\.be|spotify.com|soundcloud|vimeo/i
+      filterInput: 'youtube.com|youtu.be|spotify.com|soundcloud|vimeo'
     }
   },
   watch: {
