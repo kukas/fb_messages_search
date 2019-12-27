@@ -51,43 +51,46 @@ export default {
 }
 </script>
 <style scoped>
-    .message-outer.from-me {
-      text-align: right;
-    }
-    .message {
-        line-height: 16px;
-        font-size: 11pt;
-        max-width: 300px;
-        display: inline-block;
-        vertical-align:top;
-    }
-    .message-share, .message-bubble {
-        border-radius: 32px;
-        padding: 10px 10px;
-    }
-    .message-outer.has-share .message-bubble {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-    .message-outer.has-share .message-share {
-      border-top-left-radius: 0;
-      border-top-right-radius: 0;
-    }
-    .message-share {
-        border: 1px #e4e4e4 solid;
-        margin-bottom: 1px;
-        overflow:hidden;
-    }
-    .message-bubble {
-        background-color: #f1f0f0;
-        margin-bottom: 1px;
-    }
-    .message-outer.from-me .message-bubble {
-      background-color: #fa3c4c;
-      color: #ffffff;
-    }
-    .timestamp {
-      display: inline-block;
-      font-size: 9pt;
-    }
+.message-outer {
+  display: flex;
+  flex-direction: row;
+}
+.message-outer.from-me {
+  text-align: right;
+  flex-direction: row-reverse;
+}
+.message {
+  line-height: 16px;
+  font-size: 11pt;
+  max-width: 300px;
+}
+.message-share, .message-bubble {
+  border-radius: 32px;
+  padding: 10px 10px;
+}
+.message-outer.has-share .message-bubble {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.message-outer.has-share .message-share {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+.message-share {
+  border: 1px #e4e4e4 solid;
+  margin-bottom: 1px;
+  overflow:hidden;
+}
+.message-bubble {
+  background-color: #f1f0f0;
+  margin-bottom: 1px;
+}
+.message-outer.from-me .message-bubble {
+  background-color: #fa3c4c;
+  color: #ffffff;
+}
+.timestamp {
+  font-size: 9pt;
+  margin: .3em 1em;
+}
 </style>

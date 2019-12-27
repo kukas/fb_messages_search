@@ -19,10 +19,10 @@ export default {
 #app {
   font-family: Helvetica, Arial, sans-serif;
   color: #2c3e50;
-  width: 1000px;
+  width: 800px;
   margin: 0px auto;
 }
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 800px) {
   #app {
     width: auto;
   }
