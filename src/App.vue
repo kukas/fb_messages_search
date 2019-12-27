@@ -20,7 +20,7 @@ export default {
   font-family: Helvetica, Arial, sans-serif;
   color: #2c3e50;
   width: 1000px;
-  margin: 60px auto;
+  margin: 0px auto;
 }
 @media screen and (max-width: 1000px) {
   #app {

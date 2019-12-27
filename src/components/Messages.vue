@@ -1,5 +1,11 @@
 <template>
     <div>
+      <div class="search-bar">
+        <input v-model="filterInput" @change="filterMessages">
+        <div v-if="filteredMessages.length > 0">
+          Found {{ filteredMessages.length }} messages
+        </div>
+      </div>
       <message
         v-for="(message, index) in filteredMessages"
         v-bind:key="index"
@@ -9,6 +15,9 @@
         v-bind:content="message.content"
         v-bind:share="message.share"
         ></message>
+        <div v-if="filteredMessages.length === 0">
+          No messages found
+        </div>
     </div>
 </template>
 
@@ -20,20 +29,19 @@ export default {
     return {
       myUsername: '',
       allMessages: [],
+      filteredMessages: [],
+      filterInput: 'spotify.com|soundcloud|vimeo'
       // filter: /spotify.com|soundcloud|vimeo/i
-      filter: /youtube\.com|youtu\.be|spotify.com|soundcloud|vimeo/i
+      // filter: /youtube\.com|youtu\.be|spotify.com|soundcloud|vimeo/i
     }
   },
-  computed: {
-    filteredMessages: function () {
-      return this.allMessages.filter((message) => {
-        const hasSharedLink = message.share !== undefined && message.share.link !== undefined
-        return this.filter.test(message.content) || (hasSharedLink && this.filter.test(message.share.link))
-      })
+  watch: {
+    allMessages: function () {
+      this.filterMessages()
     }
   },
   methods: {
-    download_messages: function (jsonNumber = 1) {
+    downloadMessages: function (jsonNumber = 1) {
       return this.$http.get(`./static/message_${jsonNumber}.json`).then(response => {
         let text = response.bodyText
         // fix utf-8 escaping ?!?!
@@ -45,17 +53,47 @@ export default {
         } else {
           this.allMessages = json.messages
         }
-        return this.download_messages(jsonNumber + 1)
+        return this.downloadMessages(jsonNumber + 1)
       }, response => {
         // error
         console.log('Error fetching json file', response)
       })
+    },
+
+    filterMessages: function () {
+      if (this.filterInput.length <= 1) {
+        this.filteredMessages = []
+      } else {
+        let filter = new RegExp(this.filterInput, 'i')
+        console.log(filter)
+        this.filteredMessages = this.allMessages.filter((message) => {
+          const hasSharedLink = message.share !== undefined && message.share.link !== undefined
+          return filter.test(message.content) || (hasSharedLink && filter.test(message.share.link))
+        })
+      }
     }
   },
   mounted () {
-    this.download_messages().then(response => {
+    this.downloadMessages().then(response => {
       console.log('end of loading')
     })
   }
 }
 </script>
+<style scoped>
+.search-bar {
+  padding-bottom: 3em;
+  text-align: center;
+}
+.search-bar input {
+  width: 400px;
+  /* height: 30px; */
+  padding: .5em;
+  margin: .5em;
+}
+@media screen and (max-width: 400px) {
+  .search-bar input {
+    width: auto;
+  }
+}
+</style>
