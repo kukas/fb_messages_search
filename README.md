@@ -28,4 +28,8 @@ The process is explained in the [Facebook Help Center](https://www.facebook.com/
 
 In the **Download Your Information** page you may click **Deselect All** in the **Your Information** list and select **Messages** only. Finally change the **Format** to **JSON** and click **Create File**.
 
-After some time you will get an email with the information that your export is ready. After that head to the **Download Your Information** page again and download the data in **Available Copies** section. You will get a zip file named `facebook-yourusername.zip`, in it there will be subfolders with `.json` files. Those are your chat histories you can drag-and-drop into this application.
+After some time you will get an email with the information that your export is ready. After that head to the **Download Your Information** page again and download the data in **Available Copies** section. You will get a zip file named `facebook-yourusername.zip`, in it there will be subfolders with `.json` files. Those are your chat histories you can view in the application.
+
+## Loading your data in the application
+
+Copy the `message_*.json` files into the `static/` subdirectory. The application will load the messages from there.
