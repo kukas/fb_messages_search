@@ -28,8 +28,8 @@ export default {
   },
   computed: {
     'datetime': function () {
-      const options = { dateStyle: 'long', timeStyle: 'medium' }
-      return new Date(this.timestamp).toLocaleDateString(undefined, options)
+      const datetime = new Intl.DateTimeFormat(undefined, { dateStyle: 'full', timeStyle: 'long' }).format(new Date(this.timestamp))
+      return datetime
     },
     'links': function () {
       let links = []
