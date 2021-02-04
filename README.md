@@ -10,6 +10,10 @@ Facebook Messages Search is a [Vue.js](https://vuejs.org/) application for viewi
 # install dependencies
 npm install
 
+# edit secrets.js and add Spotify API key for Spotify link thumbnails
+cp config/secrets.js.example config/secrets.js
+vim config/secrets.js
+
 # serve with hot reload at localhost:8080
 npm run dev
 
